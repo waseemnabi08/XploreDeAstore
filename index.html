@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XploreDeAstore.com - Discover the Soul of Astore Valley</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb; /* Tailwind blue-600 */
+            --secondary-color: #10b981; /* Tailwind emerald-500 */
+            --accent-color: #f59e0b; /* Tailwind amber-500 */
+            --text-dark: #1f2937; /* Tailwind gray-800 */
+            --text-light: #6b7280; /* Tailwind gray-500 */
+            --bg-light: #f9fafb; /* Tailwind gray-50 */
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.85), rgba(16, 185, 129, 0.85)),
+                        url('images/Astore.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 9999px; /* Tailwind rounded-full */
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1280px; /* Tailwind xl */
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.5rem; /* Tailwind px-6 */
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem; /* Tailwind space-x-8 */
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 1280px; /* Tailwind xl */
+            margin: 0 auto;
+            padding: 0 1.5rem; /* Tailwind px-6 */
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            color: var(--text-light);
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Destinations Grid */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem; /* Tailwind gap-8 */
+            margin-bottom: 3rem;
+        }
+
+        .destination-card {
+            background: var(--white);
+            border-radius: 1rem; /* Tailwind rounded-xl */
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* Tailwind shadow-lg */
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); /* Tailwind shadow-2xl */
+        }
+
+        .card-image-container {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .destination-card:hover .card-image {
+            transform: scale(1.1);
+        }
+
+
+        .card-content {
+            padding: 1.5rem; /* Tailwind p-6 */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.3rem; /* Tailwind text-xl */
+            font-weight: 600; /* Tailwind semibold */
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .card-description {
+            color: var(--text-light);
+            font-size: 0.9rem; /* Tailwind text-sm */
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem; /* Tailwind text-xs */
+            margin-top: auto;
+        }
+
+        .difficulty {
+            padding: 0.3rem 0.8rem;
+            border-radius: 9999px; /* Tailwind rounded-full */
+            font-weight: 500;
+            font-size: 0.75rem; /* Tailwind text-xs */
+        }
+
+        .easy { background: #dcfce7; color: #166534; } /* Tailwind green-100, green-800 */
+        .moderate { background: #fef3c7; color: #92400e; } /* Tailwind amber-100, amber-800 */
+        .challenging { background: #fee2e2; color: #991b1b; } /* Tailwind red-100, red-800 */
+
+        /* Weather Widget */
+        .weather-widget-container {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2.5rem; /* Tailwind p-10 */
+            border-radius: 1rem; /* Tailwind rounded-xl */
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .weather-widget-container h2 {
+            font-size: 1.8rem; /* Tailwind text-2xl */
+            margin-bottom: 0.5rem;
+        }
+        .weather-widget-container p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .weather-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem; /* Tailwind gap-6 */
+            margin-top: 1.5rem;
+        }
+
+        .weather-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.2rem; /* Tailwind p-5 */
+            border-radius: 0.75rem; /* Tailwind rounded-lg */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .weather-item h4 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+        .weather-item p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+        .weather-item .weather-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+
+        /* Interactive Map Section */
+        .map-section {
+            background: var(--bg-light);
+        }
+
+        .map-container {
+            height: 450px;
+            border-radius: 1rem; /* Tailwind rounded-xl */
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        /* Contact/Consultation Section */
+        #contact-section {
+            background-color: var(--white);
+        }
+        .contact-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .contact-content p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .contact-button {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        .contact-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: #d1d5db; /* Tailwind gray-300 */
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem; /* Tailwind gap-10 */
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.2rem;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-section a {
+            color: #9ca3af; /* Tailwind gray-400 */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151; /* Tailwind gray-700 */
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af; /* Tailwind gray-400 */
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem; /* Tailwind p-8 */
+            border-radius: 1rem; /* Tailwind rounded-xl */
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-light);
+            line-height: 1;
+            padding: 0.5rem;
+        }
+        .close-modal:hover {
+            color: var(--text-dark);
+        }
+
+        /* Carousel styles */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 0.75rem; /* Tailwind rounded-lg */
+            margin-bottom: 1.5rem;
+            background-color: #e5e7eb; /* Tailwind gray-200 for placeholder bg */
+        }
+
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-image-item {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        .carousel-image-item img {
+            width: 100%;
+            height: 400px; /* Fixed height for carousel images */
+            object-fit: cover;
+            display: block;
+            border-radius: 0.75rem;
+        }
+
+
+        .carousel-prev,
+        .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 0.6rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            transition: background 0.3s ease, transform 0.3s ease;
+            z-index: 10;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-prev:hover,
+        .carousel-next:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev { left: 10px; }
+        .carousel-next { right: 10px; }
+
+        .modal-body h2 {
+            font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--primary-color);
+        }
+        .modal-body p.description {
+            margin-bottom: 1.5rem; color: var(--text-light); font-size: 1rem;
+        }
+        .modal-body h3 {
+            color: var(--secondary-color); margin-bottom: 0.8rem; font-size: 1.2rem; border-left: 3px solid var(--accent-color); padding-left: 0.5rem;
+        }
+        .modal-body ul {
+            margin-bottom: 1.5rem; padding-left: 1.5rem; list-style: disc;
+        }
+        .modal-body ul li {
+            margin-bottom: 0.5rem;
+        }
+        .modal-body .highlights-paragraph {
+             background: var(--bg-light); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid var(--secondary-color); font-style: italic;
+        }
+        .modal-contact-button {
+            background: var(--primary-color); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 25px; cursor: pointer; transition: background 0.3s; font-weight: 500;
+        }
+        .modal-contact-button:hover {
+            background: #1d4ed8; /* Tailwind blue-700 */
+        }
+
+        /* AI Feature Styles */
+        .ai-tell-more-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .ai-tell-more-button:hover {
+            background-color: #d97706; /* Tailwind amber-600 */
+            transform: translateY(-2px);
+        }
+        .ai-tell-more-button:disabled {
+            background-color: #9ca3af; /* Tailwind gray-400 */
+            cursor: not-allowed;
+        }
+        .ai-details-content {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #f0f9ff; /* Tailwind sky-50 */
+            border-left: 4px solid var(--primary-color);
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+        .ai-details-content h4 {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .ai-details-content p {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+        .ai-details-content .loading-text,
+        .ai-details-content .error-text {
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; /* Basic mobile menu would require JS */ }
+            .hero h1 { font-size: 2.2rem; }
+            .destinations-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+            .modal-content { padding: 1.5rem; }
+            .carousel-image-item img { height: 300px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 0.9rem; }
+            .section-title { font-size: 1.8rem; }
+            .container { padding: 0 1rem; }
+            .modal-content { width: 95%; padding: 1rem; }
+            .carousel-image-item img { height: 250px; }
+            .weather-item p { font-size: 1.2rem; }
+        }
+        .loading-message {
+            text-align: center;
+            padding: 1rem;
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+    </style>
+</head>
+<body>
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
+        <div class="nav-container">
+            <div class="logo">XploreAstore</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#weather">Weather</a></li>
+                <li><a href="#map">Map</a></li>
+                <li><a href="#contact-section">Contact</a></li>
+            </ul>
+            <button id="mobile-menu-button" class="md:hidden text-2xl text-gray-700">
+                ☰
+            </button>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Explore Astore: Nature's Masterpiece</h1>
+            <p>Journey through breathtaking valleys, serene alpine lakes, and towering peaks in the heart of Gilgit-Baltistan. Your unforgettable adventure in Pakistan's northern paradise begins here!</p>
+            <a href="#destinations" class="cta-button">Discover Destinations</a>
+        </div>
+    </section>
+
+    <section id="destinations" class="container">
+        <h2 class="section-title">Featured Destinations in Astore</h2>
+        <p class="section-subtitle">Uncover the unparalleled beauty of Astore, from the vast plains of Deosai to the tranquil waters of Rama Lake. Each location offers a unique story and a lifetime of memories.</p>
+
+        <div class="destinations-grid">
+            <div class="destination-card" onclick="openModal('deosai')">
+                <div class="card-image-container">
+                    <img src="images/deosai.jpg" alt="Deosai Plains" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x220/1f2937/FFFFFF?text=Image+Not+Found';">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Deosai Plains</h3>
+                    <p class="card-description">The "Land of Giants," the world's second-highest alpine plateau, famed for its vibrant wildflowers, unique wildlife, and expansive, breathtaking vistas.</p>
+                    <div class="card-details">
+                        <span>Altitude: ~4,114m</span>
+                        <span class="difficulty moderate">Moderate</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-card" onclick="openModal('sheosar')">
+                 <div class="card-image-container">
+                    <img src="images/sheosar.jpg" alt="Sheosar Lake" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x220/1f2937/FFFFFF?text=Image+Not+Found';">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Sheosar Lake</h3>
+                    <p class="card-description">A jewel of Deosai, this deep blue alpine lake offers stunning reflections of the surrounding peaks and is a sanctuary for diverse flora and fauna.</p>
+                    <div class="card-details">
+                        <span>Altitude: ~4,142m</span>
+                        <span class="difficulty moderate">Moderate</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-card" onclick="openModal('minimarg')">
+                <div class="card-image-container">
+                    <img src="images/minimarg.jpg" alt="Minimarg Valley" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x220/1f2937/FFFFFF?text=Image+Not+Found';">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Minimarg Valley</h3>
+                    <p class="card-description">A picturesque valley known for its lush green meadows, dense pine forests, and the stunning Rainbow Lake. Offers a tranquil escape with captivating beauty.</p>
+                    <div class="card-details">
+                        <span>Altitude: ~2,800m</span>
+                        <span class="difficulty challenging">Challenging (Permit often required)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-card" onclick="openModal('rama')">
+                <div class="card-image-container">
+                    <img src="images/rama.jpg" alt="Rama Valley" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x220/1f2937/FFFFFF?text=Image+Not+Found';">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Rama Valley & Lake</h3>
+                    <p class="card-description">A serene valley with lush meadows, pine forests, and the stunning Rama Lake. It's a gateway to Nanga Parbat's eastern face, offering incredible views.</p>
+                    <div class="card-details">
+                        <span>Altitude: ~3,300m (Lake)</span>
+                        <span class="difficulty moderate">Moderate</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="destination-card" onclick="openModal('tarishing')">
+                <div class="card-image-container">
+                    <img src="images/tarishing.jpg" alt="Tarishing Village" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x220/1f2937/FFFFFF?text=Image+Not+Found';">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Tarishing & Rupal Face</h3>
+                    <p class="card-description">The village of Tarishing is the gateway to the awe-inspiring Rupal Face of Nanga Parbat, one of the highest mountain faces in the world. A trekker's dream.</p>
+                    <div class="card-details">
+                        <span>Altitude: ~2,900m (Village)</span>
+                        <span class="difficulty challenging">Challenging (Trek)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-card" onclick="openModal('rattu')">
+                <div class="card-image-container">
+                    <img src="images/rattu.jpg" alt="Rattu Valley" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x220/1f2937/FFFFFF?text=Image+Not+Found';">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Rattu Valley</h3>
+                    <p class="card-description">Known for its ski resort in winter and lush landscapes in summer, Rattu offers diverse experiences from adventure sports to peaceful nature walks.</p>
+                    <div class="card-details">
+                        <span>Altitude: ~2,600m</span>
+                        <span class="difficulty easy">Easy to Moderate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="weather" class="container">
+        <div class="weather-widget-container">
+            <h2>Astore Valley Weather</h2>
+            <p>Stay updated with the current weather conditions to plan your adventure perfectly.</p>
+            <div id="weather-info-display" class="weather-info">
+                <div class="loading-message">Loading weather data...</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="map" class="map-section">
+        <div class="container">
+            <h2 class="section-title">Explore Astore on the Map</h2>
+            <p class="section-subtitle">Visualize the stunning landscapes and pinpoint your next adventure in the Astore District. The map below highlights key areas and attractions.</p>
+            <div class="map-container">
+                <iframe
+                    src="https://maps.google.com/maps?q=Astore%20Valley%2C%20Gilgit-Baltistan&t=&z=10&ie=UTF8&iwloc=&output=embed"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-section" class="container">
+        <h2 class="section-title">Plan Your Adventure / Get in Touch</h2>
+        <div class="contact-content">
+            <p class="section-subtitle">Ready to experience the magic of Astore? Have questions or need help planning your trip? Our team of local experts is here to provide personalized consultations and help you craft an unforgettable journey. Contact us today to start your Astore adventure!</p>
+            <a href="mailto:xploredeastore@gmail.com?subject=Astore%20Trip%20Consultation" class="contact-button">Email for Consultation</a>
+             <p class="mt-6 text-sm text-gray-600">Or call us at: <a href="tel:+923121571600" class="text-blue-600 hover:underline">+92312-1571600</a></p>
+        </div>
+    </section>
+
+
+    <footer id="contact-footer"> <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>XploreAstore</h3>
+                    <p>Your premier guide to discovering the authentic beauty and adventure of Astore Valley, Gilgit-Baltistan.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="#destinations">Destinations</a></li>
+                        <li><a href="#weather">Weather Guide</a></li>
+                        <li><a href="#map">Interactive Map</a></li>
+                        <li><a href="#contact-section">Plan Your Trip</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>📧 <a href="mailto:xploredeastore@gmail.com">xploredeastore@gmail.com</a></li>
+                        <li>📞 <a href="tel:+923121571600">+92312-1571600</a></li>
+                        <li>📍 Islamabad | Astore, Gilgit-Baltistan, Pakistan</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Our Journey</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/profile.php?id=61576829433651" target="https://www.facebook.com/profile.php?id=61576829433651" rel="noopener noreferrer">Facebook</a></li>
+                        <li><a href="https://www.instagram.com/xploredeastore/" target="https://www.instagram.com/xploredeastore/" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> XploreAstore.com. All rights reserved. Crafted with ❤️ for the mountains.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <div id="modal-body" class="modal-body">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile Menu (Basic Toggle - for full functionality, more robust JS is needed)
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const navLinks = document.querySelector('nav .nav-links');
+        if (mobileMenuButton && navLinks) { // Check if elements exist
+            mobileMenuButton.addEventListener('click', () => {
+                 // This is a placeholder for actual mobile menu logic.
+                 // For a real site, you'd toggle a class on navLinks to show/hide it.
+                // A simple alert for now, replace with actual menu toggle logic
+                const mobileNav = document.getElementById('mobile-nav-links');
+                if (mobileNav) { // Check if the mobile nav container exists
+                    mobileNav.classList.toggle('hidden');
+                } else {
+                     alert("Mobile menu display area not found. Implement #mobile-nav-links container.");
+                }
+            });
+        }
+
+
+        // Destination details
+        const destinations = {
+            deosai: {
+                title: 'Deosai Plains - The Land of Giants',
+                description: 'Deosai, meaning "Summer\'s Place" in Balti, transforms into a carpet of millions of wildflowers from July to August. This vast, treeless wilderness is the second highest alpine plateau in the world, offering an almost surreal landscape. It\'s a critical habitat for the Himalayan Brown Bear and numerous other species.',
+                details: [
+                    'Elevation: Approximately 4,114 meters (13,497 ft)',
+                    'Best Time to Visit: Mid-June to mid-September (road access dependent on snowmelt)',
+                    'Key Attractions: Sheosar Lake, Bara Pani, Kala Pani, diverse flora and fauna, incredible night skies.',
+                    'Activities: Wildlife spotting (especially brown bears), photography, camping, trekking, stargazing.',
+                    'Travel Note: Requires a 4x4 vehicle. Weather can change rapidly; be prepared for cold temperatures even in summer.'
+                ],
+                highlights: 'Witnessing a Himalayan Brown Bear in its natural habitat or camping under a canopy of stars in the profound silence of Deosai is an experience that stays with you forever. The sheer scale of the plains is humbling.',
+                images: [
+                    'images/deosai2.jpg',
+                    'images/deosai3.jpg',
+                    'images/deosai4.jpg',
+                    'images/deosai5.jpg'
+                ]
+            },
+            sheosar: {
+                title: 'Sheosar Lake - The Blind Lake',
+                description: 'Located in the heart of Deosai Plains, Sheosar Lake is a breathtakingly beautiful alpine lake. Its deep blue waters reflect the surrounding snow-capped peaks and vast plains, creating a picture-perfect scene. The name "Sheosar" means "blind lake" in Shina language.',
+                details: [
+                    'Elevation: Approximately 4,142 meters (13,589 ft)',
+                    'Location: Within Deosai National Park',
+                    'Features: Crystal-clear waters, surrounded by meadows often blooming with wildflowers, views of distant mountains.',
+                    'Activities: Photography, picnicking, quiet contemplation, short walks around the lake.',
+                    'Accessibility: Reached via a jeep track within Deosai.'
+                ],
+                highlights: 'The tranquility of Sheosar Lake, especially during sunrise or sunset, is magical. On a clear day, the reflection of Nanga Parbat can sometimes be seen in its waters from certain vantage points.',
+                images: [
+                    'images/sheosar1.jpg',
+                    'images/sheosar2.jpg',
+                    'images/sheosar3.jpg'
+                ]
+            },
+            minimarg: {
+                title: 'Minimarg Valley - A Slice of Paradise',
+                description: 'Minimarg is an exceptionally beautiful valley, often described as a "piece of Switzerland" in Pakistan. Known for its lush green plains, dense pine forests, crystal-clear streams, and the famous Rainbow Lake. Due to its proximity to the Line of Control (LoC), access is restricted and requires special permits.',
+                details: [
+                    'Elevation: Approximately 2,800 meters (9,186 ft)',
+                    'Key Attractions: Rainbow Lake, Domel, Burzil Pass (on the way), traditional wooden houses.',
+                    'Activities: Sightseeing, photography, light trekking (if permitted).',
+                    'Permit Info: NOC (No Objection Certificate) from the concerned authorities is mandatory for all visitors.',
+                    'Best Time to Visit: Summer months (June to August).'
+                ],
+                highlights: 'The vibrant colors of Rainbow Lake, set against the backdrop of lush greenery and towering mountains, make Minimarg a photographer\'s dream. The valley\'s pristine and untouched beauty is its main draw.',
+                images: [
+                    'images/minimarg1.jpg',
+                    'images/minimarg2.jpg',
+                    'images/minimarg3.jpg',
+                    'images/minimarg4.avif'
+                ]
+            },
+            rama: {
+                title: 'Rama Valley & Rama Lake',
+                description: 'Rama Valley is a stunningly beautiful area characterized by its lush green meadows, thick pine forests, and the tranquil Rama Lake. It serves as a base for trekkers heading towards Nanga Parbat\'s eastern flank and offers magnificent views of the "Killer Mountain."',
+                details: [
+                    'Elevation: Around 3,300 meters (10,826 ft) for Rama Lake',
+                    'Key Attractions: Rama Lake, PTDC Motel Rama, surrounding pine forests, views of Nanga Parbat.',
+                    'Activities: Trekking, camping, boating in Rama Lake (seasonal), photography, relaxation.',
+                    'Accessibility: Accessible by jeep from Astore town. The road can be challenging.',
+                    'Best Time to Visit: May to October.'
+                ],
+                highlights: 'Camping by Rama Lake under a starlit sky with the silhouette of Nanga Parbat in the distance is an unforgettable experience. The valley is also rich in biodiversity.',
+                images: [
+                    'images/rama1.jpg',
+                    'images/rama2.jpg',
+                    'images/rama3.jpg',
+                    'images/rama4.jpg'
+                ]
+            },
+            tarishing: {
+                title: 'Tarishing & Nanga Parbat (Rupal Face)',
+                description: 'The village of Tarishing is the gateway to one of the most formidable mountain faces on Earth: the Rupal Face of Nanga Parbat. This sheer wall of rock and ice rises over 4,500 meters (15,000 ft) from the valley floor, creating an awe-inspiring spectacle. The trek to Rupal Base Camp is legendary.',
+                details: [
+                    'Tarishing Village Elevation: Approx. 2,900 meters (9,514 ft)',
+                    'Rupal Base Camp Elevation: Approx. 3,500 meters (11,482 ft)',
+                    'Key Attractions: Direct views of Nanga Parbat\'s Rupal Face, traditional village life, challenging treks.',
+                    'Activities: Trekking (to Rupal Base Camp, Mazeno Pass), mountaineering (for experienced climbers), cultural immersion.',
+                    'Difficulty: Trek to base camp is moderate to challenging.'
+                ],
+                highlights: 'Standing at the foot of the Rupal Face is a humbling and powerful experience. The sheer scale and majesty of Nanga Parbat from this side are unparalleled. It\'s a pilgrimage site for serious trekkers and mountaineers.',
+                images: [
+                    'images/tarishing1.jpg',
+                    'images/tarishing2.jpg',
+                    'images/tarishing3.jpg'
+                ]
+            },
+             rattu: {
+                title: 'Rattu Valley - Year-Round Charm',
+                description: 'Rattu Valley is known for its scenic beauty that changes dramatically with the seasons. In winter, it hosts a ski resort attracting enthusiasts, while in summer, it transforms into a lush green haven perfect for leisurely exploration and enjoying the local culture. It\'s a less crowded gem offering diverse experiences.',
+                details: [
+                    'Elevation: Approximately 2,600 meters (8,530 ft)',
+                    'Key Attractions: Army Ski Resort (winter), Kalapani, lush summer meadows, traditional villages.',
+                    'Activities: Skiing & snowboarding (winter), hiking, Dirlay Lake, trout fishing, cultural visits, photography.',
+                    'Accessibility: Relatively easily accessible from Astore town.',
+                    'Best Time to Visit: December-February for snow activities; May-September for green landscapes.'
+                ],
+                highlights: 'The duality of Rattu is its charm – from thrilling ski slopes under a blanket of snow to serene green pastures under the summer sun. The drive to Rattu itself is scenic, passing through charming villages.',
+                images: [
+                    'images/rattu1.jpg',
+                    'images/rattu2.jpg',
+                    'images/rattu3.jpg',
+                ]
+            }
+        };
+
+        const modal = document.getElementById('modal');
+        const modalBody = document.getElementById('modal-body');
+        let currentImageIndex = 0;
+        let currentImages = [];
+
+        function openModal(destinationKey) {
+            const dest = destinations[destinationKey];
+            if (!dest) {
+                console.error("Destination not found:", destinationKey);
+                return;
+            }
+            currentImages = dest.images;
+            currentImageIndex = 0;
+
+            let imageCarouselSlides = '';
+            currentImages.forEach((image, index) => {
+                imageCarouselSlides += `
+                    <div class="carousel-image-item">
+                        <img src="${image}" alt="${dest.title} Image ${index + 1}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1f2937/FFFFFF?text=Image+Load+Error';">
+                    </div>`;
+            });
+
+            // AI Content placeholder and button
+            const aiContentContainerId = `ai-destination-details-${destinationKey}`;
+
+            modalBody.innerHTML = `
+                <div class="carousel-container">
+                    <div class="carousel-slide" style="transform: translateX(0%);">
+                        ${imageCarouselSlides}
+                    </div>
+                    ${currentImages.length > 1 ? `
+                        <button class="carousel-prev" onclick="changeImage(-1)">❮</button>
+                        <button class="carousel-next" onclick="changeImage(1)">❯</button>
+                    ` : ''}
+                </div>
+                <h2>${dest.title}</h2>
+                <p class="description">${dest.description}</p>
+                <h3>Key Details</h3>
+                <ul>
+                    ${dest.details.map(detail => `<li>${detail}</li>`).join('')}
+                </ul>
+                <h3>Highlights</h3>
+                <p class="highlights-paragraph">${dest.highlights}</p>
+
+                <div class="text-center">
+                    <button class="ai-tell-more-button" id="ai-button-${destinationKey}" onclick="fetchAiDetails('${destinationKey}', this)">
+                        ✨ Tell Me More with AI
+                    </button>
+                </div>
+                <div id="${aiContentContainerId}" class="ai-details-content" style="display:none;">
+                    </div>
+
+                <div style="margin-top: 2rem; text-align: center;">
+                    <a href="mailto:xploredeastore@gmail.com?subject=Inquiry%20about%20${encodeURIComponent(dest.title)}" class="modal-contact-button">
+                        Inquire About This Destination
+                    </a>
+                </div>
+            `;
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent background scroll
+            updateCarouselTransform();
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore background scroll
+        }
+
+        function changeImage(direction) {
+            currentImageIndex = (currentImageIndex + direction + currentImages.length) % currentImages.length;
+            updateCarouselTransform();
+        }
+
+        function updateCarouselTransform() {
+            const slideContainer = modalBody.querySelector('.carousel-slide');
+            if (slideContainer) {
+                slideContainer.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+            }
+        }
+
+        // Close modal if clicked outside of modal-content
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+         // Close modal on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && modal.style.display === 'flex') {
+                closeModal();
+            }
+        });
+
+        // --- Gemini API Integration ---
+        const geminiApiKey = "AIzaSyDlr5guos8g44FZbrlYdZBNVndWrOxqAjs"; // IMPORTANT: Platform will inject API key. Leave empty.
+
+        async function fetchAiDetails(destinationKey, buttonElement) {
+            const destinationName = destinations[destinationKey]?.title || "this location";
+            const aiContentContainerId = `ai-destination-details-${destinationKey}`;
+            const aiContentContainer = document.getElementById(aiContentContainerId);
+
+            if (!aiContentContainer) {
+                console.error("AI content container not found for", destinationKey);
+                return;
+            }
+
+            // Show loading state
+            buttonElement.disabled = true;
+            buttonElement.innerHTML = '✨ Fetching Insights...';
+            aiContentContainer.style.display = 'block';
+            aiContentContainer.innerHTML = `<p class="loading-text">Generating fascinating details about ${destinationName}...</p>`;
+
+            const prompt = `Tell me more interesting, unique, and engaging details about ${destinationName}, located in Astore Valley, Gilgit-Baltistan, Pakistan. Include any fascinating local stories, cultural significance, hidden gems or activities nearby that aren't commonly known, or specific tips for visitors that would enhance their experience. Aim for a narrative style that would excite a tourist. Keep the response to 2-3 well-structured paragraphs.`;
+
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`;
+            const payload = {
+                contents: [{
+                    role: "user",
+                    parts: [{ text: prompt }]
+                }]
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`API Error (${response.status}): ${errorData.error?.message || 'Unknown error'}`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    let text = result.candidates[0].content.parts[0].text;
+                    // Basic formatting: replace newlines with <br> and bold headings if any (simple heuristic)
+                    text = text.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+                    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+
+                    aiContentContainer.innerHTML = `<h4>✨ AI Storyteller Unveils...</h4><p>${text}</p>`;
+                    buttonElement.innerHTML = '✨ Insights Loaded!'; // Indicate completion
+                    // Optionally hide the button after successful load:
+                    // buttonElement.style.display = 'none';
+                } else {
+                    throw new Error("No content received from AI or unexpected response structure.");
+                }
+
+            } catch (error) {
+                console.error("Error fetching AI details:", error);
+                aiContentContainer.innerHTML = `<p class="error-text">Sorry, couldn't fetch AI insights at the moment. Error: ${error.message}</p>`;
+                buttonElement.disabled = false;
+                buttonElement.innerHTML = '✨ Try AI Insights Again';
+            }
+        }
+
+
+        // Weather data update
+        async function fetchWeather() {
+            const openWeatherApiKey = '79c5333ffcc5cd5cc006bd737c32494e'; // Updated with the provided API key
+            const city = 'Astore';
+            const countryCode = 'PK';
+            const weatherDisplay = document.getElementById('weather-info-display');
+
+            if (!openWeatherApiKey) {
+                weatherDisplay.innerHTML = `
+                    <div class="weather-item col-span-full text-center">
+                        <p class="text-sm text-yellow-300">Please add a valid OpenWeatherMap API key in the script to fetch live weather data.</p>
+                        <p class="text-xs">(Displaying sample data)</p>
+                    </div>
+                    <div class="weather-item"><h4>Temperature</h4><p>12°C</p></div>
+                    <div class="weather-item"><h4>Condition</h4><p><span class="weather-icon">⛅</span> Partly Cloudy</p></div>
+                    <div class="weather-item"><h4>Feels Like</h4><p>10°C</p></div>
+                    <div class="weather-item"><h4>Humidity</h4><p>60%</p></div>`;
+                return;
+            }
+
+            const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${openWeatherApiKey}&units=metric`;
+
+            try {
+                const response = await fetch(weatherApiUrl);
+                if (!response.ok) {
+                    throw new Error(`Weather API request failed: ${response.status}`);
+                }
+                const data = await response.json();
+
+                const weatherIconMap = {
+                    '01d': '☀️', '01n': '🌙', // Clear sky
+                    '02d': '⛅', '02n': '☁️', // Few clouds
+                    '03d': '☁️', '03n': '☁️', // Scattered clouds
+                    '04d': '☁️', '04n': '☁️', // Broken clouds
+                    '09d': '🌧️', '09n': '🌧️', // Shower rain
+                    '10d': '🌦️', '10n': '🌧️', // Rain
+                    '11d': '⛈️', '11n': '⛈️', // Thunderstorm
+                    '13d': '❄️', '13n': '❄️', // Snow
+                    '50d': '🌫️', '50n': '🌫️'  // Mist
+                };
+                const icon = weatherIconMap[data.weather[0].icon] || '🌡️';
+
+                weatherDisplay.innerHTML = `
+                    <div class="weather-item">
+                        <h4>Temperature</h4>
+                        <p>${Math.round(data.main.temp)}°C</p>
+                    </div>
+                    <div class="weather-item">
+                        <h4>Condition</h4>
+                        <p><span class="weather-icon">${icon}</span> ${data.weather[0].description}</p>
+                    </div>
+                    <div class="weather-item">
+                        <h4>Feels Like</h4>
+                        <p>${Math.round(data.main.feels_like)}°C</p>
+                    </div>
+                    <div class="weather-item">
+                        <h4>Humidity</h4>
+                        <p>${data.main.humidity}%</p>
+                    </div>
+                `;
+            } catch (error) {
+                console.error("Error fetching weather:", error);
+                weatherDisplay.innerHTML = `<div class="col-span-full text-center text-red-300">Could not fetch weather data. ${error.message}</div>`;
+            }
+        }
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Initial calls
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchWeather();
+        });
+    </script>
+</body>
+</html>
