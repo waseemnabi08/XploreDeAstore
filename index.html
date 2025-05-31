@@ -566,23 +566,62 @@
 
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .destinations-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            .footer-content {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
-            .nav-links { display: none; /* Basic mobile menu would require JS */ }
-            .hero h1 { font-size: 2.2rem; }
-            .destinations-grid { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-            .modal-content { padding: 1.5rem; }
-            .carousel-image-item img { height: 300px; }
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 0.9rem;
+            }
+            .modal-content {
+                padding: 1.5rem;
+            }
+            .carousel-image-item img {
+                height: 300px;
+            }
         }
 
         @media (max-width: 480px) {
-            .hero h1 { font-size: 1.8rem; }
-            .hero p { font-size: 0.9rem; }
-            .section-title { font-size: 1.8rem; }
-            .container { padding: 0 1rem; }
-            .modal-content { width: 95%; padding: 1rem; }
-            .carousel-image-item img { height: 250px; }
-            .weather-item p { font-size: 1.2rem; }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 0.8rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            .modal-content {
+                width: 95%;
+                padding: 1rem;
+            }
+            .carousel-image-item img {
+                height: 250px;
+            }
+            .weather-item p {
+                font-size: 1rem;
+            }
         }
         .loading-message {
             text-align: center;
@@ -602,7 +641,6 @@
 
   gtag('config', 'G-Y52FK7YF2N');
 </script>
-    
 <body>
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
         <div class="nav-container">
