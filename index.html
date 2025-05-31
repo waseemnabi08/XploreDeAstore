@@ -658,6 +658,17 @@
         </div>
     </nav>
 
+    <div id="mobile-nav-links" class="hidden fixed top-0 left-0 w-full h-full bg-white z-50">
+        <div class="flex flex-col items-center justify-center h-full">
+            <a href="#home" class="text-lg font-semibold text-gray-800 mb-4">Home</a>
+            <a href="#destinations" class="text-lg font-semibold text-gray-800 mb-4">Destinations</a>
+            <a href="#weather" class="text-lg font-semibold text-gray-800 mb-4">Weather</a>
+            <a href="#map" class="text-lg font-semibold text-gray-800 mb-4">Map</a>
+            <a href="#contact-section" class="text-lg font-semibold text-gray-800 mb-4">Contact</a>
+            <button id="close-mobile-menu" class="text-lg font-semibold text-red-500">Close</button>
+        </div>
+    </div>
+
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Explore Astore: Nature's Masterpiece</h1>
@@ -883,6 +894,18 @@
                 }
             });
         }
+
+        const mobileNavLinks = document.getElementById('mobile-nav-links');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileNavLinks.classList.toggle('hidden');
+        });
+
+        closeMobileMenuButton.addEventListener('click', () => {
+            mobileNavLinks.classList.add('hidden');
+        });
+
 
 
         // Destination details
